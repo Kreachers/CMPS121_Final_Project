@@ -18,6 +18,12 @@
         android:title="@string/pref_title_ringtone" />
 
     <!-- NOTE: This preference will be enabled only when the checkbox above is checked. -->
+    <ListPreference
+        android:defaultValue="1"
+        android:entries="@array/list_preference_entries"
+        android:entryValues="@array/list_preference_entry_values"
+        android:key="list_preference_1"
+        android:title="List preference" />
     <SwitchPreference
         android:defaultValue="true"
         android:dependency="notifications_new_message"

@@ -8,6 +8,10 @@
 
     <!-- NOTE: EditTextPreference accepts EditText attributes. -->
     <!-- NOTE: EditTextPreference's summary should be set to its value by the activity code. -->
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="switch_preference_1"
+        android:title="Switch preference" />
     <EditTextPreference
         android:capitalize="words"
         android:defaultValue="@string/pref_default_display_name"
