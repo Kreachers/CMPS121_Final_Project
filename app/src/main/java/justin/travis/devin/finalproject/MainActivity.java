@@ -16,7 +16,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -68,6 +67,7 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
             Log.v("buttonClick", i + " Minutes in spinner list");
 
         }
+
 //------[Spotify Button]----------------------------------------------------------------------------
 
 //        android.widget.ImageButton launch_spotify = (ImageButton)findViewById(R.id.spotify_image_button);
@@ -93,6 +93,7 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
                 }
             }
         });
+
 //-----[Hours spinner stuff]------------------------------------------------------------------------
 
         // Spinner element
@@ -195,7 +196,6 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
                 startActivity(intent);
             }
