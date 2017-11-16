@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/space_tree"
+    android:background="@color/colorPrimary"
     tools:context="justin.travis.devin.finalproject.CountdownActivity">
 
     <!-- The primary full-screen view. This can be replaced with whatever view

@@ -251,7 +251,7 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
         Log.d("buildInfo", "" + Build.VERSION.SDK_INT);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             Log.d("buildInfo", "build check passed");
-            if (mNotificationManager != null && mNotificationManager.isNotificationPolicyAccessGranted()) {
+            if (mNotificationManager != null && mNotificationManager.isNotificationPolicyAccessGranted() && mNotificationManager.getCurrentInterruptionFilter() != NotificationManager.INTERRUPTION_FILTER_ALL) {
                 mNotificationManager.setInterruptionFilter(NotificationManager.INTERRUPTION_FILTER_ALL);
                 Log.d("notificationManager", "Notifications unmuted");
             }
@@ -285,7 +285,7 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
             Log.d("audioManager", "All audio unmuted");
 
         }
-
+        Log.d("MainActivity", "Resume Main activity");
         super.onResume();
     }
 }

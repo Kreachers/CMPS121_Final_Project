@@ -236,12 +236,13 @@ public class CountdownActivity extends AppCompatActivity {
             }
         }.start();
 
-        //------[Power button]------------------------------------------------------------------------------
+//------[Cancel button]------------------------------------------------------------------------------
         Button cancel_button = findViewById(R.id.countdown_power_button);
         cancel_button.setOnLongClickListener(new View.OnLongClickListener() {
 
             @Override
             public boolean onLongClick(View view) {
+
                 Log.d("buttonClick", "Exit Button Clicked");
                 Log.d("buildInfo", "" + Build.VERSION.SDK_INT);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -280,12 +281,14 @@ public class CountdownActivity extends AppCompatActivity {
                     Log.d("audioManager", "All audio unmuted");
 
                 }
-                MyCountdownTimer.cancel();
+
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     stopLockTask();
                 }
+
+                MyCountdownTimer.cancel();
                 finish();
-                return false;
+                return true;
             }
         });
 
@@ -346,7 +349,7 @@ public class CountdownActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Toast.makeText(this, "YOU SHALL NEVER LEAVE!\n THIS IS MY DOMAIN!", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "YOU SHALL NEVER LEAVE!\nTHIS IS MY DOMAIN!", Toast.LENGTH_SHORT).show();
         Log.d("buttonClick", "Back Button pressed");
     }
 
