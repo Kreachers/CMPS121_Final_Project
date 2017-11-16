@@ -1,7 +1,11 @@
 package justin.travis.devin.finalproject;
 
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -25,8 +29,16 @@ public class FirstRun extends AppCompatActivity {
                     Intent intent = new Intent(android.provider.Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS);
                     startActivity(intent);
                 }
-                finish();
             }
         });
+
+    }
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    protected void onResume() {
+        final NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        if (mNotificationManager != null && mNotificationManager.isNotificationPolicyAccessGranted()) {
+            finish();
+        }
+        super.onResume();
     }
 }

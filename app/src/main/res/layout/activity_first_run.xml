@@ -12,9 +12,9 @@
         style="@android:style/Widget.Material.Light.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/button_done"
+        android:layout_below="@+id/textView_FirstRunMessage"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="66dp"
+        android:layout_marginTop="90dp"
         android:text="@string/settings"
         android:textAppearance="@android:style/TextAppearance.Material.Widget.Button" />
 
@@ -30,28 +30,27 @@
 
     <TextView
         android:id="@+id/textView_FirstRunMessage"
-        android:layout_width="match_parent"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/button_Settings"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="44dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/imageView"
+        android:layout_marginTop="36dp"
         android:gravity="center_horizontal"
-        android:text="@string/in_order_to_properly_mute_the_audio_the_app_needs_to_have_notification_access_in_the_settings_nsettings_apps_amp_notifications_nspecial_app_access_do_not_disturb"
+        android:text="@string/DNDMessage"
         android:textAppearance="@android:style/TextAppearance.Material.Menu" />
 
-    <Button
-        android:id="@+id/button_done"
-        style="@android:style/Widget.Material.Light.Button.Borderless"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="28dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
-        android:text="" />
+    <!--<Button-->
+        <!--android:id="@+id/button_done"-->
+        <!--style="@android:style/Widget.Material.Light.Button.Borderless"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_alignParentEnd="true"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_marginBottom="28dp"-->
+        <!--android:layout_marginEnd="24dp"-->
+        <!--android:layout_marginRight="24dp"-->
+        <!--android:text="" />-->
 
     <ImageView
         android:id="@+id/imageView"

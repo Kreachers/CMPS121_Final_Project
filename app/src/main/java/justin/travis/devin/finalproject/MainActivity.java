@@ -34,6 +34,8 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
         final AudioManager audio = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         final NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
+        Log.d("buildInfo", "Sdk Version: " + Build.VERSION.SDK_INT);
+        Log.d("buildInfo", "Required sdk for DnD: " + Build.VERSION_CODES.M);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (mNotificationManager != null && !mNotificationManager.isNotificationPolicyAccessGranted()) {
                 Intent intent = new Intent(MainActivity.this, FirstRun.class);
