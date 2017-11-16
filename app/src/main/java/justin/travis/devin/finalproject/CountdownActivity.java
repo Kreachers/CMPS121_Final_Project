@@ -161,27 +161,27 @@ public class CountdownActivity extends AppCompatActivity {
 
                     int notifications = prefs.getInt("notifications", 0);
                     int alarm = prefs.getInt("alarm", 0);
-                    int music = prefs.getInt("music", 0);
                     int ring = prefs.getInt("ring", 0);
                     int system = prefs.getInt("system", 0);
+//                    int music = prefs.getInt("music", 0);
 
                     Log.d("audioManager", "Notifications Shared Volume: " + notifications);
                     Log.d("audioManager", "Alarm Shared Volume: " + alarm);
-                    Log.d("audioManager", "Music Shared Volume: " + music);
                     Log.d("audioManager", "Ring Shared Volume: " + ring);
                     Log.d("audioManager", "System Shared Volume: " + system);
+//                    Log.d("audioManager", "Music Shared Volume: " + music);
 
                     audio.setStreamVolume(AudioManager.STREAM_NOTIFICATION, notifications, 0);
                     audio.setStreamVolume(AudioManager.STREAM_ALARM, alarm, 0);
-                    audio.setStreamVolume(AudioManager.STREAM_MUSIC, music, 0);
                     audio.setStreamVolume(AudioManager.STREAM_RING, ring, 0);
                     audio.setStreamVolume(AudioManager.STREAM_SYSTEM, system, 0);
+//                    audio.setStreamVolume(AudioManager.STREAM_MUSIC, music, 0);
 
                     Log.d("audioManager", "Notifications Volume: " + audio.getStreamVolume(AudioManager.STREAM_NOTIFICATION));
                     Log.d("audioManager", "Alarm Volume: " + audio.getStreamVolume(AudioManager.STREAM_ALARM));
-                    Log.d("audioManager", "Music Volume: " + audio.getStreamVolume(AudioManager.STREAM_MUSIC));
                     Log.d("audioManager", "Ring Volume: " + audio.getStreamVolume(AudioManager.STREAM_RING));
                     Log.d("audioManager", "System Volume: " + audio.getStreamVolume(AudioManager.STREAM_SYSTEM));
+//                    Log.d("audioManager", "Music Volume: " + audio.getStreamVolume(AudioManager.STREAM_MUSIC));
 
                     Log.d("audioManager", "All audio unmuted");
 
