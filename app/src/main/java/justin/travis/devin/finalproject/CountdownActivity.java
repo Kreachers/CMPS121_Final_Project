@@ -2,6 +2,8 @@ package justin.travis.devin.finalproject;
 
 import android.annotation.SuppressLint;
 import android.app.NotificationManager;
+import android.app.admin.DevicePolicyManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
@@ -15,6 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,16 +36,32 @@ public class CountdownActivity extends AppCompatActivity {
      * If {@link #AUTO_HIDE} is set, the number of milliseconds to wait after
      * user interaction before hiding the system UI.
      */
-    private static final int AUTO_HIDE_DELAY_MILLIS = 3000;
+    private static final int AUTO_HIDE_DELAY_MILLIS = 5000;
     /**
      * Some older devices needs a small delay between UI widget updates
      * and a change of the status and navigation bar.
      */
     private static final int UI_ANIMATION_DELAY = 300;
     private final Handler mHideHandler = new Handler();
+    /**
+     * Touch listener to use for in-layout UI controls to delay hiding the
+     * system UI. This is to prevent the jarring behavior of controls going away
+     * while interacting with activity UI.
+     */
+    private final View.OnTouchListener mDelayHideTouchListener = new View.OnTouchListener() {
+        @SuppressLint("ClickableViewAccessibility")
+        @Override
+        public boolean onTouch(View view, MotionEvent motionEvent) {
+            if (AUTO_HIDE) {
+                delayedHide(AUTO_HIDE_DELAY_MILLIS);
+            }
+            return false;
+        }
+    };
     private TextView textView;
     private View mContentView;
     private final Runnable mHidePart2Runnable = new Runnable() {
+
         @SuppressLint("InlinedApi")
         @Override
         public void run() {
@@ -78,21 +97,6 @@ public class CountdownActivity extends AppCompatActivity {
             hide();
         }
     };
-    /**
-     * Touch listener to use for in-layout UI controls to delay hiding the
-     * system UI. This is to prevent the jarring behavior of controls going away
-     * while interacting with activity UI.
-     */
-    private final View.OnTouchListener mDelayHideTouchListener = new View.OnTouchListener() {
-        @SuppressLint("ClickableViewAccessibility")
-        @Override
-        public boolean onTouch(View view, MotionEvent motionEvent) {
-            if (AUTO_HIDE) {
-                delayedHide(AUTO_HIDE_DELAY_MILLIS);
-            }
-            return false;
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,6 +106,40 @@ public class CountdownActivity extends AppCompatActivity {
         final SharedPreferences prefs = getPreferences(MODE_PRIVATE);
         final AudioManager audio = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         final NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        DevicePolicyManager myDevicePolicyManager = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
+        ComponentName mDeviceAdminSample = new ComponentName(this, CountdownActivity.class);
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            if (myDevicePolicyManager != null) {
+                if (myDevicePolicyManager.isDeviceOwnerApp(this.getPackageName())) {
+                    // Device owner
+                    String[] packages = {this.getPackageName()};
+                    myDevicePolicyManager.setLockTaskPackages(mDeviceAdminSample, packages);
+                    Log.d("Pinning", "Device owner app");
+                } else {
+                    // Not a device owner - prompt user or show error
+                    startLockTask();
+                    Log.d("Pinning", "Pinning with confirmation started");
+                }
+
+                if (myDevicePolicyManager.isLockTaskPermitted(this.getPackageName())) {
+                    // Lock allowed
+                    startLockTask();
+                    Log.d("Pinning", "Pinning started");
+                } else {
+                    // Lock not allowed - show error or something useful here
+                    startLockTask();
+                    Log.d("Pinning", "Pinning with confirmation started");
+                }
+            }
+        }
+
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            startLockTask();
+//            Log.d("Pinning","Pinning started");
+//        }
 
         mVisible = true;
         mControlsView = findViewById(R.id.fullscreen_content_controls);
@@ -148,7 +186,6 @@ public class CountdownActivity extends AppCompatActivity {
                 Log.d("timer", "Timer done");
                 textView.setText(R.string.done);
 
-                NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
                 Log.d("buildInfo", "" + Build.VERSION.SDK_INT);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     Log.d("buildInfo", "build check passed");
@@ -190,17 +227,21 @@ public class CountdownActivity extends AppCompatActivity {
                 ring.start();
                 Log.d("buttonClick", "That happened and we all let it happen");
 
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    stopLockTask();
+                    Log.d("Pinning", "Pinning stopped");
+                }
 
                 finish();
             }
         }.start();
 
         //------[Power button]------------------------------------------------------------------------------
-        android.widget.Button cancel_button = findViewById(R.id.countdown_power_button);
-        cancel_button.setOnClickListener(new View.OnClickListener() {
+        Button cancel_button = findViewById(R.id.countdown_power_button);
+        cancel_button.setOnLongClickListener(new View.OnLongClickListener() {
 
             @Override
-            public void onClick(View view) {
+            public boolean onLongClick(View view) {
                 Log.d("buttonClick", "Exit Button Clicked");
                 Log.d("buildInfo", "" + Build.VERSION.SDK_INT);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -214,33 +255,37 @@ public class CountdownActivity extends AppCompatActivity {
 
                     int notifications = prefs.getInt("notifications", 0);
                     int alarm = prefs.getInt("alarm", 0);
-                    //                        int music = prefs.getInt("music",0);
                     int ring = prefs.getInt("ring", 0);
                     int system = prefs.getInt("system", 0);
+//                    int music = prefs.getInt("music", 0);
 
                     Log.d("audioManager", "Notifications Shared Volume: " + notifications);
                     Log.d("audioManager", "Alarm Shared Volume: " + alarm);
-                    //                        Log.d("audioManager", "Music Shared Volume: " + music);
                     Log.d("audioManager", "Ring Shared Volume: " + ring);
                     Log.d("audioManager", "System Shared Volume: " + system);
+//                    Log.d("audioManager", "Music Shared Volume: " + music);
 
                     audio.setStreamVolume(AudioManager.STREAM_NOTIFICATION, notifications, 0);
                     audio.setStreamVolume(AudioManager.STREAM_ALARM, alarm, 0);
-                    //                        audio.setStreamVolume(AudioManager.STREAM_MUSIC, music, 0);
                     audio.setStreamVolume(AudioManager.STREAM_RING, ring, 0);
                     audio.setStreamVolume(AudioManager.STREAM_SYSTEM, system, 0);
+//                    audio.setStreamVolume(AudioManager.STREAM_MUSIC, music, 0);
 
                     Log.d("audioManager", "Notifications Volume: " + audio.getStreamVolume(AudioManager.STREAM_NOTIFICATION));
                     Log.d("audioManager", "Alarm Volume: " + audio.getStreamVolume(AudioManager.STREAM_ALARM));
-                    //                        Log.d("audioManager", "Music Volume: " + audio.getStreamVolume(AudioManager.STREAM_MUSIC));
                     Log.d("audioManager", "Ring Volume: " + audio.getStreamVolume(AudioManager.STREAM_RING));
                     Log.d("audioManager", "System Volume: " + audio.getStreamVolume(AudioManager.STREAM_SYSTEM));
+//                    Log.d("audioManager", "Music Volume: " + audio.getStreamVolume(AudioManager.STREAM_MUSIC));
 
                     Log.d("audioManager", "All audio unmuted");
 
                 }
                 MyCountdownTimer.cancel();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    stopLockTask();
+                }
                 finish();
+                return false;
             }
         });
 
@@ -304,4 +349,5 @@ public class CountdownActivity extends AppCompatActivity {
         Toast.makeText(this, "YOU SHALL NEVER LEAVE!\n THIS IS MY DOMAIN!", Toast.LENGTH_SHORT).show();
         Log.d("buttonClick", "Back Button pressed");
     }
+
 }

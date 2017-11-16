@@ -12,11 +12,12 @@
         style="@android:style/Widget.Material.Light.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView_FirstRunMessage"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="90dp"
+        android:layout_marginBottom="30dp"
         android:text="@string/settings"
-        android:textAppearance="@android:style/TextAppearance.Material.Widget.Button" />
+        android:textAppearance="@android:style/TextAppearance.Material.Widget.Button"
+        tools:targetApi="lollipop" />
 
     <TextView
         android:id="@+id/textView_Title"
@@ -25,32 +26,34 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="35dp"
-        android:text="@string/studybudy"
-        android:textAppearance="@android:style/TextAppearance.Material.Title" />
+        android:text="@string/studybuddy"
+        android:textAppearance="@android:style/TextAppearance.Material.Title"
+        tools:targetApi="lollipop" />
 
     <TextView
         android:id="@+id/textView_FirstRunMessage"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_below="@+id/imageView"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="36dp"
         android:gravity="center_horizontal"
         android:text="@string/DNDMessage"
-        android:textAppearance="@android:style/TextAppearance.Material.Menu" />
+        android:textAppearance="@android:style/TextAppearance.Material.Menu"
+        tools:targetApi="lollipop" />
 
     <!--<Button-->
-        <!--android:id="@+id/button_done"-->
-        <!--style="@android:style/Widget.Material.Light.Button.Borderless"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignParentBottom="true"-->
-        <!--android:layout_alignParentEnd="true"-->
-        <!--android:layout_alignParentRight="true"-->
-        <!--android:layout_marginBottom="28dp"-->
-        <!--android:layout_marginEnd="24dp"-->
-        <!--android:layout_marginRight="24dp"-->
-        <!--android:text="" />-->
+    <!--android:id="@+id/button_done"-->
+    <!--style="@android:style/Widget.Material.Light.Button.Borderless"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_alignParentBottom="true"-->
+    <!--android:layout_alignParentEnd="true"-->
+    <!--android:layout_alignParentRight="true"-->
+    <!--android:layout_marginBottom="28dp"-->
+    <!--android:layout_marginEnd="24dp"-->
+    <!--android:layout_marginRight="24dp"-->
+    <!--android:text="" />-->
 
     <ImageView
         android:id="@+id/imageView"
@@ -59,5 +62,6 @@
         android:layout_below="@+id/textView_Title"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        app:srcCompat="@drawable/book_icon" />
+        app:srcCompat="@drawable/book_icon"
+        android:contentDescription="@string/open_book_icon"/>
 </android.widget.RelativeLayout>

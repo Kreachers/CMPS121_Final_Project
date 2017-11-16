@@ -33,6 +33,7 @@ public class FirstRun extends AppCompatActivity {
         });
 
     }
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     protected void onResume() {
         final NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);

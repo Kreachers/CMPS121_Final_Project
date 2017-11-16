@@ -27,8 +27,9 @@
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings" />
-        <activity android:name=".FirstRun"
-            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".FirstRun"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

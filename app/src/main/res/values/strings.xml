@@ -86,8 +86,9 @@
     <string name="opens_spotify">Opens Spotify</string>
     <string name="closes_the_app">Closes the app</string>
     <string name="opens_the_settings_page">Opens the settings page</string>
-    <string name="DNDMessage">In order to properly mute the audio the app needs to have notification access in the settings\n\nIf you would like to have specific users allowed through the Do not disturb then you must\nstar them in your contacts and change your Do not Disturb settings\n\nSettings > Apps &amp; notifications >\nSpecial app access > Do not Disturb</string>
+    <string name="DNDMessage">In order to properly mute the audio the app needs to have notification access in the settings\n\nIf you would like to have specific users allowed through Do Not Disturb then you must star them in your contacts and change your Do Not Disturb settings to allow priority contacts.\n\nSettings > Sound > Do Not Disturb preferences >\nPriority only allows > Calls</string>
     <string name="cancel">Cancel</string>
-    <string name="studybudy">StudyBudy</string>
+    <string name="studybuddy">Study Buddy</string>
     <string name="settings">Settings</string>
+    <string name="open_book_icon">Open book Icon</string>
 </resources>
