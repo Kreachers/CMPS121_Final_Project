@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -20,6 +21,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -110,6 +112,10 @@ public class CountdownActivity extends AppCompatActivity {
         DevicePolicyManager myDevicePolicyManager = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
         ComponentName mDeviceAdminSample = new ComponentName(this, CountdownActivity.class);
 
+//        VideoView videoview = (VideoView) findViewById(R.id.videoView);
+//        Uri uri = Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.videoloop);
+//        videoview.setVideoURI(uri);
+//        videoview.start();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             if (myDevicePolicyManager != null) {
