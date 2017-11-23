@@ -6,9 +6,9 @@ import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -21,7 +21,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.VideoView;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -168,6 +167,9 @@ public class CountdownActivity extends AppCompatActivity {
 
         //initialize the ui component
         textView = findViewById(R.id.fullscreen_content);
+        //set the font
+        Typeface custom_font = Typeface.createFromAsset(getAssets(),  "fonts/FFF Tusj.ttf");
+        textView.setTypeface(custom_font);
 
         //get the text from intent
         int hoursTimer = getIntent().getIntExtra("hours", 0);
@@ -178,6 +180,7 @@ public class CountdownActivity extends AppCompatActivity {
         int timeSeconds = (minutesTimer + (hoursTimer * 60)) * 60;
 //        int timeSeconds = 10;
 
+//------[Countdown]---------------------------------------------------------------------------------
         //Initialize a CountDownTimer class with the time data from previous activity
         //which will set the text view with countDown time
         final CountDownTimer MyCountdownTimer = new CountDownTimer(timeSeconds * 1000, 1000) {
@@ -185,6 +188,7 @@ public class CountdownActivity extends AppCompatActivity {
                 //set the remaining time in the textView
                 String temp = (millisUntilFinished / 1000) / 3600 % 24 + ":" + (millisUntilFinished / 1000) / 60 % 60 + ":" + (millisUntilFinished / 1000) % 60;
                 Log.d("timer", temp + "");
+
                 textView.setText(temp);
             }
 
@@ -358,5 +362,19 @@ public class CountdownActivity extends AppCompatActivity {
 //        Toast.makeText(this, "YOU SHALL NEVER LEAVE!\nTHIS IS MY DOMAIN!", Toast.LENGTH_SHORT).show();
         Log.d("buttonClick", "Back Button pressed");
     }
+
+//    @Override
+//    public void onConfigurationChanged(Configuration newConfig) {
+//        super.onConfigurationChanged(newConfig);
+//        // Checks the orientation of the screen
+//        ImageView iv = findViewById(R.id.countdownWallpaper);
+//        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+//            iv.setRotation(90f);
+////            Toast.makeText(this, "landscape", Toast.LENGTH_SHORT).show();
+//        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+//            iv.setRotation(0);
+////            Toast.makeText(this, "portrait", Toast.LENGTH_SHORT).show();
+//        }
+//    }
 
 }

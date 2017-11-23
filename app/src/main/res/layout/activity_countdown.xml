@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@color/black_overlay"
     tools:context="justin.travis.devin.finalproject.CountdownActivity">
 
     <!-- The primary full-screen view. This can be replaced with whatever view
@@ -15,22 +15,22 @@
 
     <ImageView
         android:id="@+id/countdownWallpaper"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:scaleType="centerCrop"
-        app:srcCompat="@drawable/space_tree" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/chalkboard_background_2"
+        android:contentDescription="@string/countdown_wallpaper"/>
 
     <TextView
         android:id="@+id/fullscreen_content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:gravity="center"
         android:keepScreenOn="true"
-        android:text="text"
-        android:textColor="#33b5e5"
-        android:textSize="50sp"
-        android:textStyle="bold"
-        android:layout_marginTop="100dp"/>
+        android:text="@string/dummy_content"
+        android:textColor="#e0dbd1"
+        android:textSize="75sp"
+        android:textStyle="bold" />
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -53,7 +53,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="cancel" />
+                android:text="@string/cancel" />
 
         </LinearLayout>
 
