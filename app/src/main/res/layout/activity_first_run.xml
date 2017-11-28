@@ -63,6 +63,6 @@
         android:layout_below="@+id/textView_Title"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        app:srcCompat="@drawable/book_icon"
+        app:srcCompat="@drawable/book_icon_temp"
         android:contentDescription="@string/open_book_icon"/>
 </android.widget.RelativeLayout>

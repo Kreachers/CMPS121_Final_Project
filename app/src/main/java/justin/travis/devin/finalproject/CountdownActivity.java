@@ -168,7 +168,7 @@ public class CountdownActivity extends AppCompatActivity {
         //initialize the ui component
         textView = findViewById(R.id.fullscreen_content);
         //set the font
-        Typeface custom_font = Typeface.createFromAsset(getAssets(),  "fonts/FFF Tusj.ttf");
+        Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/fff_tusj.ttf");
         textView.setTypeface(custom_font);
 
         //get the text from intent
