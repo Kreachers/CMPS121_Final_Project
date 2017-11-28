@@ -3,44 +3,52 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/appbackground"
+    android:background="@drawable/chalkboard_background_2"
     tools:context="justin.travis.devin.finalproject.MainActivity">
 
     <Spinner
         android:id="@+id/spinner_hours"
         android:layout_width="90dp"
-        android:layout_height="wrap_content"
+        android:layout_height="24dp"
         android:layout_above="@+id/button_start"
+        android:layout_alignLeft="@+id/textView_hours"
         android:layout_alignStart="@+id/textView_hours"
         android:layout_marginBottom="28dp"
+        android:background="@android:color/transparent"
         android:dropDownWidth="50dp" />
 
     <Spinner
         android:id="@+id/spinner_minutes"
         android:layout_width="90dp"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/textView_title"
+        android:layout_height="24dp"
+        android:layout_alignLeft="@+id/textView_minutes"
+        android:layout_alignStart="@+id/textView_minutes"
         android:layout_alignTop="@+id/spinner_hours"
-        android:dropDownWidth="50dp"/>
+        android:background="@android:color/transparent"
+        android:dropDownWidth="50dp" />
 
     <TextView
         android:id="@+id/textView_hours"
-        android:layout_width="75dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/spinner_minutes"
+        android:layout_alignLeft="@+id/textView_title"
         android:layout_alignStart="@+id/textView_title"
         android:layout_marginBottom="25dp"
-        android:text="@string/hours" />
-    <!--android:textColor="#FFFFFF"/>-->
+        android:fontFamily="@font/fff_tusj_family"
+        android:text="@string/hours"
+        android:textColor="#e0dbd1" />
 
     <TextView
         android:id="@+id/textView_minutes"
-        android:layout_width="75dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/spinner_minutes"
+        android:layout_alignEnd="@+id/textView_title"
+        android:layout_alignRight="@+id/textView_title"
         android:layout_below="@+id/textView_title"
-        android:text="@string/minutes" />
-    <!--android:textColor="#FFFFFF"/>-->
+        android:fontFamily="@font/fff_tusj_family"
+        android:text="@string/minutes"
+        android:textColor="#e0dbd1" />
 
     <TextView
         android:id="@+id/textView_title"
@@ -49,54 +57,53 @@
         android:layout_above="@+id/textView_hours"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="24dp"
-        android:text="@string/how_long_would_you_like_to_study_for" />
-    <!--android:textColor="#FFFFFF"/>-->
-
-    <!--<Button-->
-    <!--android:id="@+id/button_spotify"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_below="@+id/spinner_minutes"-->
-    <!--android:layout_marginTop="80dp"-->
-    <!--android:layout_toEndOf="@+id/textView_minutes"-->
-    <!--android:text="Spotify" />-->
+        android:text="@string/how_long_would_you_like_to_study_for"
+        android:fontFamily="@font/fff_tusj_family"
+        android:textColor="#e0dbd1"/>
 
     <Button
         android:id="@+id/button_start"
-        style="@android:style/Widget.Material.Light.Button.Borderless"
-        android:layout_width="wrap_content"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="75dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="@string/start" />
+        android:fontFamily="@font/fff_tusj_family"
+        android:text="@string/start"
+        android:textColor="#e0dbd1" />
 
     <ImageButton
         android:id="@+id/spotify_image_button"
-        android:layout_width="150dp"
+        android:layout_width="118dp"
         android:layout_height="50dp"
         android:layout_alignBottom="@+id/power_image_button"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/launch_spotify"
-        android:contentDescription="@string/opens_spotify" />
+        android:background="@drawable/chalk_spotify"
+        android:contentDescription="@string/opens_spotify"
+        android:scaleType="fitXY" />
 
     <ImageButton
         android:id="@+id/power_image_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="42dp"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="32dp"
-        android:layout_toEndOf="@+id/spinner_minutes"
+        android:layout_marginBottom="48dp"
+        android:layout_toEndOf="@+id/textView_minutes"
+        android:layout_toRightOf="@+id/textView_minutes"
+        android:background="@drawable/chalk_power_button"
         android:contentDescription="@string/closes_the_app"
-        android:src="@android:drawable/ic_lock_power_off" />
+        android:scaleType="fitXY" />
 
     <ImageButton
         android:id="@+id/settings_image_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="48dp"
+        android:layout_height="50dp"
+        android:scaleType="fitXY"
         android:layout_alignTop="@+id/spotify_image_button"
         android:layout_toStartOf="@+id/spinner_hours"
         android:contentDescription="@string/opens_the_settings_page"
-        android:src="@android:drawable/ic_menu_preferences" />
+        android:background="@drawable/chalk_settings"
+        android:layout_toLeftOf="@+id/spinner_hours" />
 
     <!--<TextView-->
     <!--android:id="@+id/textView"-->
@@ -110,7 +117,6 @@
     <!--android:layout_marginTop="30dp"-->
     <!--android:gravity="center"-->
     <!--android:text="@string/in_order_to_properly_mute_the_audio_the_app_needs_to_have_notification_access_in_the_settings_nsettings_apps_amp_notifications_nspecial_app_access_do_not_disturb"/>-->
-
-    <!--android:textColor="#FFFFFF" />-->
+    <!--android:textColor="#e0dbd1" />-->
 
 </android.widget.RelativeLayout>

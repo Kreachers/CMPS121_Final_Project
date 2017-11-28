@@ -215,25 +215,25 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             if (hours.getId() == R.id.spinner_hours && !Objects.equals(parent.getItemAtPosition(position).toString(), "0")) {
                 hoursSelected = Integer.parseInt(parent.getSelectedItem().toString());
-                Log.d("spinner", hoursSelected + " on " + Build.VERSION.SDK_INT + "Build SDK");
+                Log.d("spinner", hoursSelected + " hours on Android SDK " + Build.VERSION.SDK_INT);
                 Toast.makeText(this, "Selected: " + parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
             }
         } else if (hours.getId() == R.id.spinner_hours) {
             hoursSelected = Integer.parseInt(parent.getSelectedItem().toString());
-            Log.d("spinner", hoursSelected + " on " + Build.VERSION.SDK_INT + "Build SDK");
+            Log.d("spinner", hoursSelected + " hours on Android SDK " + Build.VERSION.SDK_INT);
             Toast.makeText(this, "Selected: " + parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             if (minutes.getId() == R.id.spinner_minutes && !Objects.equals(parent.getItemAtPosition(position).toString(), "0")) {
                 minutesSelected = Integer.parseInt(parent.getSelectedItem().toString());
-                Log.d("spinner", minutesSelected + " on Android SDK " + Build.VERSION.SDK_INT);
-                Toast.makeText(this, "Selected: " + parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
+                Log.d("spinner", minutesSelected + " minutes on Android SDK " + Build.VERSION.SDK_INT);
+//                Toast.makeText(this, "Selected: " + parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
             }
         } else if (minutes.getId() == R.id.spinner_minutes) {
             minutesSelected = Integer.parseInt(parent.getSelectedItem().toString());
-            Log.d("spinner", minutesSelected + " on Android SDK " + Build.VERSION.SDK_INT);
-            Toast.makeText(this, "Selected: " + parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
+            Log.d("spinner", minutesSelected + " minutes on Android SDK " + Build.VERSION.SDK_INT);
+//            Toast.makeText(this, "Selected: " + parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
         }
 
     }
