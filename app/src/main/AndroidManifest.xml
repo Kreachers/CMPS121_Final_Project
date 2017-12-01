@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
     <uses-permission android:name="android.permission.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -25,11 +26,9 @@
             android:label="@string/title_activity_countdown"
             android:theme="@style/FullscreenTheme" />
         <activity
-            android:name=".SettingsActivity"
-            android:label="@string/title_activity_settings" />
-        <activity
             android:name=".FirstRun"
             android:screenOrientation="portrait" />
+        <activity android:name=".SettingsActivity"></activity>
     </application>
 
 </manifest>

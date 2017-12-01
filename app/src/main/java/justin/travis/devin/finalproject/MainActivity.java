@@ -5,6 +5,8 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
+import android.graphics.drawable.ColorDrawable;
 import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Build;
@@ -12,19 +14,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.Spinner;
-import android.widget.Toast;
-
+import android.widget.NumberPicker;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
-public class MainActivity extends Activity implements AdapterView.OnItemSelectedListener {
+public class MainActivity extends Activity {
     private static int minutesSelected;
     private static int hoursSelected;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,19 +54,19 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
 
 //------[Initialize Variables]----------------------------------------------------------------------
 
-        List<Integer> hours = new ArrayList<>();
-        List<Integer> minutes = new ArrayList<>();
-
-        for (int i = 0; i < 24; i++) {
-            hours.add(i);
-            Log.v("spinner", i + " hours in spinner list");
-
-        }
-        for (int i = 0; i < 60; i++) {
-            minutes.add(i);
-            Log.v("buttonClick", i + " Minutes in spinner list");
-
-        }
+//        List<Integer> hours = new ArrayList<>();
+//        List<Integer> minutes = new ArrayList<>();
+//
+//        for (int i = 0; i < 24; i++) {
+//            hours.add(i);
+//            Log.v("spinner", i + " hours in spinner list");
+//
+//        }
+//        for (int i = 0; i < 60; i++) {
+//            minutes.add(i);
+//            Log.v("buttonClick", i + " Minutes in spinner list");
+//
+//        }
 
 //------[Spotify Button]----------------------------------------------------------------------------
 
@@ -97,42 +94,96 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
             }
         });
 
-//-----[Hours spinner stuff]------------------------------------------------------------------------
+////-----[Hours spinner stuff]------------------------------------------------------------------------
+//
+//        // Spinner element
+//        Spinner hours_spinner_element = findViewById(R.id.spinner_hours);
+//
+//        // Spinner click listener
+//        hours_spinner_element.setOnItemSelectedListener(this);
+//
+//        // Creating adapter for spinner
+//        ArrayAdapter<Integer> hoursDataAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, hours);
+//
+//        // Drop down layout style - list view with radio button
+//        hoursDataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//
+//        // attaching data adapter to spinner
+//        hours_spinner_element.setAdapter(hoursDataAdapter);
+//
+////-----[Minutes spinner stuff]----------------------------------------------------------------------
+//
+//        // Spinner element
+//        Spinner minutes_spinner_element = findViewById(R.id.spinner_minutes);
+//
+//        // Spinner click listener
+//        minutes_spinner_element.setOnItemSelectedListener(this);
+//
+//        // Creating adapter for spinner
+//        ArrayAdapter<Integer> minutesDataAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, minutes);
+//
+//        // Drop down layout style - list view with radio button
+//        minutesDataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//
+//        // attaching data adapter to spinner
+//        minutes_spinner_element.setAdapter(minutesDataAdapter);
 
-        // Spinner element
-        Spinner hours_spinner_element = findViewById(R.id.spinner_hours);
+        Log.v("MainActivity", "spinners created");
 
-        // Spinner click listener
-        hours_spinner_element.setOnItemSelectedListener(this);
+//------[Hours Number Picker]-----------------------------------------------------------------------
+        NumberPicker hours_picker = (NumberPicker) findViewById(R.id.picker_Hours);
 
-        // Creating adapter for spinner
-        ArrayAdapter<Integer> hoursDataAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, hours);
+        //Populate NumberPicker values from minimum and maximum value range
+        //Set the minimum value of NumberPicker
+        hours_picker.setMinValue(0);
+        //Specify the maximum value/number of NumberPicker
+        hours_picker.setMaxValue(24);
 
-        // Drop down layout style - list view with radio button
-        hoursDataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //Gets whether the selector wheel wraps when reaching the min/max value.
+        hours_picker.setWrapSelectorWheel(true);
 
-        // attaching data adapter to spinner
-        hours_spinner_element.setAdapter(hoursDataAdapter);
+        hoursSelected = 0;
+        setDividerColor(hours_picker, getResources().getColor(R.color.colorChalk));
 
-//-----[Minutes spinner stuff]----------------------------------------------------------------------
+        //Set a value change listener for NumberPicker
+        hours_picker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker picker, int oldVal, int newVal){
+                hoursSelected = newVal;
+                Log.d("picker", minutesSelected + " hours on Android SDK " + Build.VERSION.SDK_INT);
+//                Toast.makeText(this, "Selected: " + parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
-        // Spinner element
-        Spinner minutes_spinner_element = findViewById(R.id.spinner_minutes);
 
-        // Spinner click listener
-        minutes_spinner_element.setOnItemSelectedListener(this);
+//------[Minutes Number Picker]---------------------------------------------------------------------
+        NumberPicker minutes_picker = (NumberPicker) findViewById(R.id.picker_Minutes);
 
-        // Creating adapter for spinner
-        ArrayAdapter<Integer> minutesDataAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, minutes);
+        //Populate NumberPicker values from minimum and maximum value range
+        //Set the minimum value of NumberPicker
+        minutes_picker.setMinValue(0);
+        //Specify the maximum value/number of NumberPicker
+        minutes_picker.setMaxValue(59);
 
-        // Drop down layout style - list view with radio button
-        minutesDataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //Gets whether the selector wheel wraps when reaching the min/max value.
+        minutes_picker.setWrapSelectorWheel(true);
 
-        // attaching data adapter to spinner
-        minutes_spinner_element.setAdapter(minutesDataAdapter);
+        minutesSelected = 0;
+        setDividerColor(minutes_picker, getResources().getColor(R.color.colorChalk));
+
+        //Set a value change listener for NumberPicker
+        minutes_picker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker picker, int oldVal, int newVal){
+                minutesSelected = newVal;
+                Log.d("picker", minutesSelected + " minutes on Android SDK " + Build.VERSION.SDK_INT);
+//                Toast.makeText(this, "Selected: " + parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        Log.v("MainActivity", "Pickers Created");
 
 //-----[Start Button]-------------------------------------------------------------------------------
-
         Button startButton = findViewById(R.id.button_start);
         startButton.setOnClickListener(new View.OnClickListener() {
 
@@ -206,41 +257,41 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
 
     }
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-        Spinner hours = (Spinner) parent;
-        Spinner minutes = (Spinner) parent;
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            if (hours.getId() == R.id.spinner_hours && !Objects.equals(parent.getItemAtPosition(position).toString(), "0")) {
-                hoursSelected = Integer.parseInt(parent.getSelectedItem().toString());
-                Log.d("spinner", hoursSelected + " hours on Android SDK " + Build.VERSION.SDK_INT);
-                Toast.makeText(this, "Selected: " + parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
-            }
-        } else if (hours.getId() == R.id.spinner_hours) {
-            hoursSelected = Integer.parseInt(parent.getSelectedItem().toString());
-            Log.d("spinner", hoursSelected + " hours on Android SDK " + Build.VERSION.SDK_INT);
-            Toast.makeText(this, "Selected: " + parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
-        }
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            if (minutes.getId() == R.id.spinner_minutes && !Objects.equals(parent.getItemAtPosition(position).toString(), "0")) {
-                minutesSelected = Integer.parseInt(parent.getSelectedItem().toString());
-                Log.d("spinner", minutesSelected + " minutes on Android SDK " + Build.VERSION.SDK_INT);
+//    @Override
+//    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//
+//        Spinner hours = (Spinner) parent;
+//        Spinner minutes = (Spinner) parent;
+//
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+//            if (hours.getId() == R.id.spinner_hours && !Objects.equals(parent.getItemAtPosition(position).toString(), "0")) {
+//                hoursSelected = Integer.parseInt(parent.getSelectedItem().toString());
+//                Log.d("spinner", hoursSelected + " hours on Android SDK " + Build.VERSION.SDK_INT);
 //                Toast.makeText(this, "Selected: " + parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
-            }
-        } else if (minutes.getId() == R.id.spinner_minutes) {
-            minutesSelected = Integer.parseInt(parent.getSelectedItem().toString());
-            Log.d("spinner", minutesSelected + " minutes on Android SDK " + Build.VERSION.SDK_INT);
+//            }
+//        } else if (hours.getId() == R.id.spinner_hours) {
+//            hoursSelected = Integer.parseInt(parent.getSelectedItem().toString());
+//            Log.d("spinner", hoursSelected + " hours on Android SDK " + Build.VERSION.SDK_INT);
 //            Toast.makeText(this, "Selected: " + parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
-        }
-
-    }
-
-    public void onNothingSelected(AdapterView<?> arg0) {
-        Log.d("spinner", "Nothing Selected");
-    }
+//        }
+//
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+//            if (minutes.getId() == R.id.spinner_minutes && !Objects.equals(parent.getItemAtPosition(position).toString(), "0")) {
+//                minutesSelected = Integer.parseInt(parent.getSelectedItem().toString());
+//                Log.d("spinner", minutesSelected + " minutes on Android SDK " + Build.VERSION.SDK_INT);
+////                Toast.makeText(this, "Selected: " + parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
+//            }
+//        } else if (minutes.getId() == R.id.spinner_minutes) {
+//            minutesSelected = Integer.parseInt(parent.getSelectedItem().toString());
+//            Log.d("spinner", minutesSelected + " minutes on Android SDK " + Build.VERSION.SDK_INT);
+////            Toast.makeText(this, "Selected: " + parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
+//        }
+//
+//    }
+//
+//    public void onNothingSelected(AdapterView<?> arg0) {
+//        Log.d("spinner", "Nothing Selected");
+//    }
 
     public void onResume() {
 
@@ -286,6 +337,33 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
 
         }
         Log.d("MainActivity", "Resume Main activity");
+
+//        hoursSelected = 0;
+//        minutesSelected = 0;
+
         super.onResume();
     }
+
+    private void setDividerColor(NumberPicker picker, int color) {
+
+        java.lang.reflect.Field[] pickerFields = NumberPicker.class.getDeclaredFields();
+        for (java.lang.reflect.Field pf : pickerFields) {
+            if (pf.getName().equals("mSelectionDivider")) {
+                pf.setAccessible(true);
+                try {
+                    ColorDrawable colorDrawable = new ColorDrawable(color);
+                    pf.set(picker, colorDrawable);
+                } catch (IllegalArgumentException e) {
+                    e.printStackTrace();
+                } catch (Resources.NotFoundException e) {
+                    e.printStackTrace();
+                }
+                catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+                break;
+            }
+        }
+    }
+
 }

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.widget.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/chalkboard_background_2"
+    tools:context="justin.travis.devin.finalproject.SettingsActivity">
+
+    <RadioGroup
+        android:id="@+id/radios"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:inputType="text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/first"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:button="@null"
+            android:drawablePadding="30dp"
+            android:drawableRight="@android:drawable/btn_radio"
+            android:text="first Response"
+            android:textColor="@color/colorChalk"
+            android:textSize="20sp"
+            android:drawableEnd="@android:drawable/btn_radio" />
+
+        <RadioButton
+            android:id="@+id/second"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:drawablePadding="30dp"
+            android:drawableRight="@android:drawable/btn_radio"
+            android:text="second Response"
+            android:textColor="@color/colorChalk"
+            android:textSize="20sp"
+            android:drawableEnd="@android:drawable/btn_radio" />
+
+        <RadioButton
+            android:id="@+id/third"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:drawablePadding="30dp"
+            android:drawableRight="@android:drawable/btn_radio"
+            android:text="third Response"
+            android:textColor="@color/colorChalk"
+            android:textSize="20sp"
+            android:drawableEnd="@android:drawable/btn_radio" />
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="52dp"
+        android:text="what would you like the response message to be?"
+        android:textColor="@color/colorChalk" />
+
+</android.widget.RelativeLayout>

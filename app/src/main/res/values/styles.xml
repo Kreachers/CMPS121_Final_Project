@@ -25,4 +25,8 @@
         <item name="android:textColor">#e0dbd1</item>
     </style>
 
+    <style name="AppTheme.Picker" parent="Theme.AppCompat.Light.NoActionBar" >
+        <item name="android:textColorPrimary">@color/colorChalk</item>
+    </style>
+
 </resources>
