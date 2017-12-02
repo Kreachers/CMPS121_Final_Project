@@ -190,57 +190,59 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
                 Log.d("buttonClick", "Start button Pressed");
-                Intent intent = new Intent(MainActivity.this, CountdownActivity.class);
-                intent.putExtra("hours", hoursSelected);
-                intent.putExtra("minutes", minutesSelected);
+                if(minutesSelected !=0 && hoursSelected != 0) {
+                    Intent intent = new Intent(MainActivity.this, CountdownActivity.class);
+                    intent.putExtra("hours", hoursSelected);
+                    intent.putExtra("minutes", minutesSelected);
 
-                Log.d("buildInfo", "Sdk Version: " + Build.VERSION.SDK_INT);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    Log.d("buildInfo", "Build check passed");
+                    Log.d("buildInfo", "Sdk Version: " + Build.VERSION.SDK_INT);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        Log.d("buildInfo", "Build check passed");
 //                    Log.d("buildInfo", "" + mNotificationManager);
-                    assert mNotificationManager != null;
-                    Log.d("buildInfo", "" + mNotificationManager.isNotificationPolicyAccessGranted());
-                    if (mNotificationManager.isNotificationPolicyAccessGranted()) {
-                        mNotificationManager.setInterruptionFilter(NotificationManager.INTERRUPTION_FILTER_ALARMS);
-                        Log.d("notificationManager", "Do not disturb enabled");
-                    }
-                } else if (audio != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && !audio.isVolumeFixed()) {
-                    //mute audio
+                        assert mNotificationManager != null;
+                        Log.d("buildInfo", "" + mNotificationManager.isNotificationPolicyAccessGranted());
+                        if (mNotificationManager.isNotificationPolicyAccessGranted()) {
+                            mNotificationManager.setInterruptionFilter(NotificationManager.INTERRUPTION_FILTER_ALARMS);
+                            Log.d("notificationManager", "Do not disturb enabled");
+                        }
+                    } else if (audio != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && !audio.isVolumeFixed()) {
+                        //mute audio
 
-                    int notifications = audio.getStreamVolume(AudioManager.STREAM_NOTIFICATION);
-                    int alarm = audio.getStreamVolume(AudioManager.STREAM_ALARM);
-                    int ring = audio.getStreamVolume(AudioManager.STREAM_RING);
-                    int system = audio.getStreamVolume(AudioManager.STREAM_SYSTEM);
+                        int notifications = audio.getStreamVolume(AudioManager.STREAM_NOTIFICATION);
+                        int alarm = audio.getStreamVolume(AudioManager.STREAM_ALARM);
+                        int ring = audio.getStreamVolume(AudioManager.STREAM_RING);
+                        int system = audio.getStreamVolume(AudioManager.STREAM_SYSTEM);
 //                    int music = audio.getStreamVolume(AudioManager.STREAM_MUSIC);
 
-                    Log.d("audioManager", "Notifications Volume: " + notifications);
-                    Log.d("audioManager", "Alarm Volume: " + alarm);
-                    Log.d("audioManager", "Ring Volume: " + ring);
-                    Log.d("audioManager", "System Volume: " + system);
+                        Log.d("audioManager", "Notifications Volume: " + notifications);
+                        Log.d("audioManager", "Alarm Volume: " + alarm);
+                        Log.d("audioManager", "Ring Volume: " + ring);
+                        Log.d("audioManager", "System Volume: " + system);
 //                    Log.d("audioManager", "Music Volume: " + music);
 
-                    prefs.edit().putInt("notifications", notifications).apply();
-                    prefs.edit().putInt("alarm", alarm).apply();
-                    prefs.edit().putInt("ring", ring).apply();
-                    prefs.edit().putInt("system", system).apply();
+                        prefs.edit().putInt("notifications", notifications).apply();
+                        prefs.edit().putInt("alarm", alarm).apply();
+                        prefs.edit().putInt("ring", ring).apply();
+                        prefs.edit().putInt("system", system).apply();
 //                    prefs.edit().putInt("music", music).apply();
 
-                    audio.setStreamVolume(AudioManager.STREAM_NOTIFICATION, 0, 0);
-                    audio.setStreamVolume(AudioManager.STREAM_ALARM, 0, 0);
-                    audio.setStreamVolume(AudioManager.STREAM_RING, 0, 0);
-                    audio.setStreamVolume(AudioManager.STREAM_SYSTEM, 0, 0);
+                        audio.setStreamVolume(AudioManager.STREAM_NOTIFICATION, 0, 0);
+                        audio.setStreamVolume(AudioManager.STREAM_ALARM, 0, 0);
+                        audio.setStreamVolume(AudioManager.STREAM_RING, 0, 0);
+                        audio.setStreamVolume(AudioManager.STREAM_SYSTEM, 0, 0);
 //                    audio.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);
 
-                    Log.d("audioManager", "Notifications Volume: " + audio.getStreamVolume(AudioManager.STREAM_NOTIFICATION));
-                    Log.d("audioManager", "Alarm Volume: " + audio.getStreamVolume(AudioManager.STREAM_ALARM));
-                    Log.d("audioManager", "Ring Volume: " + audio.getStreamVolume(AudioManager.STREAM_RING));
-                    Log.d("audioManager", "System Volume: " + audio.getStreamVolume(AudioManager.STREAM_SYSTEM));
+                        Log.d("audioManager", "Notifications Volume: " + audio.getStreamVolume(AudioManager.STREAM_NOTIFICATION));
+                        Log.d("audioManager", "Alarm Volume: " + audio.getStreamVolume(AudioManager.STREAM_ALARM));
+                        Log.d("audioManager", "Ring Volume: " + audio.getStreamVolume(AudioManager.STREAM_RING));
+                        Log.d("audioManager", "System Volume: " + audio.getStreamVolume(AudioManager.STREAM_SYSTEM));
 //                    Log.d("audioManager", "Music Volume: " + audio.getStreamVolume(AudioManager.STREAM_MUSIC));
 
-                    Log.d("audioManager", "All audio muted except Music");
+                        Log.d("audioManager", "All audio muted except Music");
 
+                    }
+                    startActivity(intent);
                 }
-                startActivity(intent);
             }
         });
 

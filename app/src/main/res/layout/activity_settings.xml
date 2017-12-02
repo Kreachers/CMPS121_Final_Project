@@ -6,55 +6,6 @@
     android:background="@drawable/chalkboard_background_2"
     tools:context="justin.travis.devin.finalproject.SettingsActivity">
 
-    <RadioGroup
-        android:id="@+id/radios"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:inputType="text"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
-        android:orientation="vertical">
-
-        <RadioButton
-            android:id="@+id/first"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:button="@null"
-            android:drawablePadding="30dp"
-            android:drawableRight="@android:drawable/btn_radio"
-            android:text="first Response"
-            android:textColor="@color/colorChalk"
-            android:textSize="20sp"
-            android:drawableEnd="@android:drawable/btn_radio" />
-
-        <RadioButton
-            android:id="@+id/second"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:button="@null"
-            android:drawablePadding="30dp"
-            android:drawableRight="@android:drawable/btn_radio"
-            android:text="second Response"
-            android:textColor="@color/colorChalk"
-            android:textSize="20sp"
-            android:drawableEnd="@android:drawable/btn_radio" />
-
-        <RadioButton
-            android:id="@+id/third"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:button="@null"
-            android:drawablePadding="30dp"
-            android:drawableRight="@android:drawable/btn_radio"
-            android:text="third Response"
-            android:textColor="@color/colorChalk"
-            android:textSize="20sp"
-            android:drawableEnd="@android:drawable/btn_radio" />
-
-    </RadioGroup>
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -64,5 +15,70 @@
         android:layout_marginTop="52dp"
         android:text="what would you like the response message to be?"
         android:textColor="@color/colorChalk" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="end"
+        android:layout_marginTop="100dp"
+        android:inputType="text"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/radio_First"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:button="@null"
+            android:drawableEnd="@android:drawable/btn_radio"
+            android:drawablePadding="30dp"
+            android:drawableRight="@android:drawable/btn_radio"
+            android:text="I cant answer the phone right now, I'm busy studying."
+            android:textColor="@color/colorChalk"
+            android:textSize="20sp" />
+
+        <RadioButton
+            android:id="@+id/radio_Second"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:drawableEnd="@android:drawable/btn_radio"
+            android:drawablePadding="30dp"
+            android:drawableRight="@android:drawable/btn_radio"
+            android:text="I'm busy at the moment. Please call back later."
+            android:textColor="@color/colorChalk"
+            android:textSize="20sp" />
+
+        <RadioButton
+            android:id="@+id/radio_Third"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/radioGroup"
+            android:layout_alignEnd="@+id/textView"
+            android:layout_alignRight="@+id/textView"
+            android:button="@null"
+            android:drawableEnd="@android:drawable/btn_radio"
+            android:drawablePadding="30dp"
+            android:drawableRight="@android:drawable/btn_radio"
+            android:text=""
+            android:textColor="@color/colorChalk"
+            android:textSize="20sp" />
+
+
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/EditText_Custom"
+        android:layout_width="304dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/radioGroup"
+        android:layout_alignLeft="@+id/radioGroup"
+        android:layout_alignStart="@+id/radioGroup"
+        android:layout_weight="1"
+        android:hint="Custom Message"
+        android:textColor="@color/colorChalk"
+        android:textColorHint="@color/colorChalkDark" />
 
 </android.widget.RelativeLayout>
