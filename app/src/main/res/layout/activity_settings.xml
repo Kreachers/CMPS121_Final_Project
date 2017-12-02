@@ -12,7 +12,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="52dp"
+        android:layout_margin="52dp"
+        android:textSize="20dp"
         android:text="what would you like the response message to be?"
         android:textColor="@color/colorChalk" />
 
@@ -22,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_gravity="end"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="150dp"
         android:inputType="text"
         android:orientation="vertical">
 
@@ -37,7 +38,8 @@
             android:drawableRight="@android:drawable/btn_radio"
             android:text="I cant answer the phone right now, I'm busy studying."
             android:textColor="@color/colorChalk"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:checked="true"/>
 
         <RadioButton
             android:id="@+id/radio_Second"
