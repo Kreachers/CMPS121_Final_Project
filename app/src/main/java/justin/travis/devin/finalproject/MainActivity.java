@@ -190,7 +190,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
                 Log.d("buttonClick", "Start button Pressed");
-                if(minutesSelected !=0 && hoursSelected != 0) {
+                if(minutesSelected !=0 || hoursSelected != 0) {
                     Intent intent = new Intent(MainActivity.this, CountdownActivity.class);
                     intent.putExtra("hours", hoursSelected);
                     intent.putExtra("minutes", minutesSelected);
